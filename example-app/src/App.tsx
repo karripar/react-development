@@ -1,4 +1,5 @@
 import './App.css';
+import Home from './components/Home';
 
 type Person = {
   name: string;
@@ -12,6 +13,7 @@ const App = () => {
   return (
     <>
       <h1>Hello {person.name}</h1>
+      <Home/>
     </>
   );
 };
