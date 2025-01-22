@@ -7,12 +7,11 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  overflow: hidden;
+
 }
 
 html {
   box-sizing: border-box;
-  overflow: hidden;
   padding: 0;
   margin: 0;
 }
@@ -21,7 +20,8 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: hidden;
+  padding-block: 3rem;
+
 }
 
 td {
@@ -38,6 +38,14 @@ tr {
   background: linear-gradient(90deg, #ff5f6d, #ffc371);
   padding: 10px;
   border-radius: 7px;
+}
+
+nav {
+  background-color: #363636;
+  display: flex;
+  justify-content: flex-end;
+  width: 80vw;
+  margin: auto;
 }
 
 /* nav */
@@ -93,7 +101,8 @@ dialog {
   position: fixed;
   top: 0;
   left: 0;
-  height: 80%;
+  height: 100%;
+  width: 100%;
   background: rgba(0, 0, 0, 0.8);
   z-index: 9999;
   color: rgba(255, 255, 255, 0.87);

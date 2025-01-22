@@ -7,7 +7,7 @@ const SingleView = (props: {
   const {item, setSelectedItem} = props;
   console.log('item:', item);
   return (
-    // TODO: Add JSX for displaying a mediafile here
+    // DONE: Add JSX for displaying a mediafile here
     // - use e.g. a <dialog> element for creating a modal
     // - use item prop to render the media item details
     // - use img tag for displaying images
@@ -17,7 +17,7 @@ const SingleView = (props: {
         <dialog open>
           <div className="media-container">
           <h2>{item.title}</h2>
-          {item.media_type === 'video/mp4' ? (
+          {item.media_type.includes('video') ? (
             <video controls src={item.filename} />
           ) : (
             <img src={item.filename} alt={item.title} />

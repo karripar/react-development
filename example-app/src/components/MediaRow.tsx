@@ -1,4 +1,5 @@
 import {MediaItem} from 'hybrid-types/DBTypes';
+import { Link } from 'react-router-dom';
 // src/components/MediaRow.tsx
 
 type MediaRowProps = {
@@ -7,7 +8,7 @@ type MediaRowProps = {
 };
 
 const MediaRow = (props: MediaRowProps) => {
-  const {item, setSelectedItem} = props;
+  const {item} = props;
   return (
     // TODO: move <tr> element  for each item property from Home.tsx here
     <tr>
@@ -19,9 +20,9 @@ const MediaRow = (props: MediaRowProps) => {
       <td>{new Date(item.created_at).toLocaleString('fi-FI')}</td>
       <td>{item.filesize}</td>
       <td>{item.media_type}</td>
-      <td><button onClick={() => {
-        setSelectedItem(item);
-      }}>View</button></td>
+      <td>
+        <Link to={'/single'} state={{item}}>Show</Link>
+      </td>
     </tr>
   );
 };
