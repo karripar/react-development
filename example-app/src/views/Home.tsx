@@ -37,7 +37,7 @@ const mediaArray: MediaItem[] = [
     filesize: 1236616,
     media_type: 'video/mp4',
     title: 'Bunny',
-    description: 'Butterflies fly around the bunny.',
+    description: 'Butterflies fly around the bunny. No idea why this was created.',
     created_at: '2024-01-07T20:48:13.000Z',
     screenshots: [],
   },
@@ -51,7 +51,7 @@ const Home = () => {
   return (
     <>
     <SingleView item={selectedItem} setSelectedItem={setSelectedItem} />
-      <h2>My Media</h2>
+      <h2 className="table-heading">My Media</h2>
       <table>
         <thead>
           <tr>

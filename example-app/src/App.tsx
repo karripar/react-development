@@ -58,7 +58,7 @@ const App = () => {
   return (
     <>
       <h1>
-        Hello {device.operatingSystem} {device.name}
+        Hello {device.operatingSystem} {device.name} user!
       </h1>
       <h2>{clock}</h2>
       <BrowserRouter>
