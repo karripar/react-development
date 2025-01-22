@@ -174,17 +174,20 @@ button:hover {
   background-color: #111111;
 }
 
-.close-button {
+.button-container button {
   padding: 20px 40px;
   background: linear-gradient(90deg, #ff5f6d, #ffc371);
   border: none;
   border-radius: 5px;
   cursor: pointer;
   color: white;
+  transition: all 0.3s ease;
 }
 
 .button-container button:hover {
-  background: linear-gradient(90deg, #ff5f6d, #ffc371);
+  background: linear-gradient(90deg, #ffc371, #ff5f6d);
+  transform: scale(1.05);
+  transition: all 0.3s ease;
 }
 
 .button-container {
@@ -209,4 +212,14 @@ button:hover {
   object-fit: cover;
   border-radius: 5px;
   margin: auto;
+}
+
+.media-info {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: white;
+  padding: 20px 50px;
+  margin-top: 1rem;
+  border-radius: 8px;
 }

@@ -17,9 +17,10 @@ const useClock = () => {
 
   useEffect(() => {
     const updateClock = () => {
-      const hours = new Date().getHours();
-      const minutes = new Date().getMinutes();
-      const seconds = new Date().getSeconds();
+      const padZero = (num: number) => (num < 10 ? '0' + num : num);
+      const hours = padZero(new Date().getHours());
+      const minutes = padZero(new Date().getMinutes());
+      const seconds = padZero(new Date().getSeconds());
       setClock(`${hours}:${minutes}:${seconds}`);
     };
 
