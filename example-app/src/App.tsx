@@ -61,7 +61,7 @@ const App = () => {
         Hello {device.operatingSystem} {device.name} user!
       </h1>
       <h2>{clock}</h2>
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<Home />}></Route>

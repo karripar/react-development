@@ -1,3 +1,7 @@
+
+Open [This link here](https://users.metropolia.fi/~karripar/hybrid-react-build/) to view it in the browser.
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
