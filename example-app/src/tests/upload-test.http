@@ -1,0 +1,23 @@
+### Upload a picture using multipart/form-data
+POST https://media2.edu.metropolia.fi/upload-api/api/v1/upload
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJsZXZlbF9uYW1lIjoiVXNlciIsImlhdCI6MTczODA2MDM2MX0.PSYdYSX5rRjYrHs9AJxBIyZa0g2DyWoP-xAQhKrFawg
+Content-Type: multipart/form-data; boundary=----Boundary
+
+------Boundary
+Content-Disposition: form-data; name="title"
+
+Jokke Pappa
+------Boundary
+Content-Disposition: form-data; name="description"
+
+Kuva Jokke papasta
+------Boundary
+Content-Disposition: form-data; name="user_id"
+
+3
+------Boundary
+Content-Disposition: form-data; name="file"; filename="jokkepappa.jpg"
+Content-Type: image/png
+
+< ../../img/jokkepappa.jpg
+------Boundary--

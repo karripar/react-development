@@ -18,7 +18,7 @@ const Single = () => {
     <div className="media-container">
       <h2>{item.title}</h2>
       {item.media_type.includes('video') ? (
-        <video controls src={item.filename} />
+        <video controls src={item.filename} crossOrigin='anonymous' />
       ) : (
         <img src={item.filename} alt={item.title} />
       )}

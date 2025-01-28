@@ -1,17 +1,19 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import './App.css';
 import Home from './views/Home';
-import {useState, useEffect} from 'react';
+//import {useState, useEffect} from 'react';
 import Profile from './views/Profile';
 import Upload from './views/Upload';
 import Layout from './components/Layout';
 import Single from './views/Single';
+import Example from './views/Example';
 
 type Device = {
   name: string;
   operatingSystem: string;
 };
 
+/**
 const useClock = () => {
   const [clock, setClock] = useState('');
 
@@ -32,7 +34,7 @@ const useClock = () => {
 
   return clock;
 };
-
+*/
 // query the device name from the user device
 const userAgent = navigator.userAgent;
 let osName = '';
@@ -54,13 +56,13 @@ const device: Device = {
 
 const App = () => {
   // constantly update the clock
-  const clock = useClock();
+  //const clock = useClock();
   return (
     <>
       <h1>
         Hello {device.operatingSystem} {device.name} user!
       </h1>
-      <h2>{clock}</h2>
+      <h2></h2>
       <BrowserRouter basename={import.meta.env.BASE_URL}>
         <Routes>
           <Route element={<Layout />}>
@@ -68,6 +70,7 @@ const App = () => {
             <Route path="/profile" element={<Profile />}></Route>
             <Route path="/upload" element={<Upload />}></Route>
             <Route path="/single" element={<Single />}></Route>
+            <Route path="/example" element={<Example/>}></Route>
           </Route>
         </Routes>
       </BrowserRouter>
