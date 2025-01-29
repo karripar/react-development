@@ -1,4 +1,4 @@
-import {MediaItem} from 'hybrid-types/DBTypes';
+import {MediaItemWithOwner} from 'hybrid-types/DBTypes';
 import {NavigateFunction, useLocation, useNavigate} from 'react-router-dom';
 
 // Utility function to format filesize, made by CoPilot
@@ -11,7 +11,7 @@ const formatFileSize = (size: number) => {
 
 const Single = () => {
   const {state} = useLocation();
-  const item: MediaItem = state.item;
+  const item: MediaItemWithOwner = state.item;
   const navigate: NavigateFunction = useNavigate();
   return (
     <>
@@ -23,6 +23,7 @@ const Single = () => {
         <img src={item.filename} alt={item.title} />
       )}
       <div className="media-info">
+      <p>Owner: {item.username}</p>
       <p>{item.description}</p>
       <p>Created at: {new Date(item.created_at).toLocaleString('fi-FI')}</p>
       <p>Filesize: {formatFileSize(item.filesize)}</p>
