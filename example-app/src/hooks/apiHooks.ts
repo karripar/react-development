@@ -1,6 +1,12 @@
 import {useEffect, useState} from 'react';
 import {fetchData} from '../lib/functions';
-import {MediaItem, MediaItemWithOwner, UserWithNoPassword} from 'hybrid-types/DBTypes';
+import {
+  MediaItem,
+  MediaItemWithOwner,
+  UserWithNoPassword,
+} from 'hybrid-types/DBTypes';
+import {Credentials, RegisterCredentials} from '../types/localTypes';
+import {LoginResponse, UserResponse} from 'hybrid-types/MessageTypes';
 
 // TODO: add necessary imports
 const useMedia = () => {
@@ -38,21 +44,70 @@ const useMedia = () => {
 
     getMedia();
   }, []);
-  // TODO: move mediaArray state here
-  // TODO: move getMedia function here
-  // TODO: move useEffect here
+
   return {mediaArray};
+};
+
+const useAuthentication = () => {
+  // TODO: add state for user
+  const postLogin = async (credentials: Credentials) => {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(credentials),
+    };
+    try {
+    return await fetchData<LoginResponse>(
+      import.meta.env.VITE_AUTH_API + '/auth/login',
+      options,
+    );
+    } catch (error) {
+      throw new Error((error as Error).message);
+    }
   };
+
+  return {postLogin};
+};
 
 
 const useUser = () => {
-  // TODO: add state for user
-  return 1;
-}
+  const getUserByToken = async (token: string) => {
+    const options = {
+      headers: {
+        Authorization: 'Bearer ' + token,
+      }
+    };
+     return await fetchData<UserResponse>(import.meta.env.VITE_AUTH_API + '/users/token', options,);
+    };
+
+
+    const postRegister = async (credentials: RegisterCredentials) => {
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(credentials),
+      };
+      try {
+        return await fetchData<UserResponse>(
+          import.meta.env.VITE_AUTH_API + '/users',
+          options,
+        );
+      } catch (error) {
+        throw new Error((error as Error).message);
+      }
+    };
+
+    return {getUserByToken, postRegister};
+};
+
 
 const useComments = () => {
   // TODO: add state for comments
   return 1;
-}
+};
 
-  export {useMedia, useUser, useComments};
+export {useMedia, useAuthentication, useComments, useUser};

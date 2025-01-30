@@ -113,6 +113,28 @@ td a {
   background-color: #fff;
 }
 
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  text-align: center;
+}
+
+.profile ul {
+  list-style-type: none;
+  padding: .4rem;
+}
+
+.profile ul li {
+  padding: .4rem;
+}
+
+.profile li {
+  margin: 0.5rem;
+}
+
 /* media item dialog */
 dialog {
   position: fixed;
