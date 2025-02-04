@@ -1,4 +1,4 @@
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {BrowserRouter, Route, Routes} from 'react-router';
 import './App.css';
 import Home from './views/Home';
 //import {useState, useEffect} from 'react';
@@ -8,6 +8,12 @@ import Layout from './components/Layout';
 import Single from './views/Single';
 import Example from './views/Example';
 import Login from './views/Login';
+import {UserProvider} from './contexts/UserContext';
+import Logout from './views/Logout';
+import {
+  ProtectedRoute,
+  ProtectedRouteHideLogin,
+} from './components/ProtectedRoute';
 
 type Device = {
   name: string;
@@ -65,16 +71,33 @@ const App = () => {
       </h1>
       <h2></h2>
       <BrowserRouter basename={import.meta.env.BASE_URL}>
-        <Routes>
-          <Route element={<Layout />}>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="/profile" element={<Profile />}></Route>
-            <Route path="/upload" element={<Upload />}></Route>
-            <Route path="/login" element={<Login />}></Route>
-            <Route path="/single" element={<Single />}></Route>
-            <Route path="/example" element={<Example/>}></Route>
-          </Route>
-        </Routes>
+        <UserProvider>
+          <Routes>
+            <Route element={<Layout />}>
+              <Route path="/" element={<Home />}></Route>
+              <Route
+                path="/profile"
+                element={
+                  <ProtectedRoute>
+                    <Profile />
+                  </ProtectedRoute>
+                }
+              ></Route>
+              <Route path="/upload" element={<Upload />}></Route>
+              <Route
+                path="/login"
+                element={
+                  <ProtectedRouteHideLogin>
+                    <Login />
+                  </ProtectedRouteHideLogin>
+                }
+              ></Route>
+              <Route path="/logout" element={<Logout />}></Route>
+              <Route path="/single" element={<Single />}></Route>
+              <Route path="/example" element={<Example />}></Route>
+            </Route>
+          </Routes>
+        </UserProvider>
       </BrowserRouter>
     </>
   );
