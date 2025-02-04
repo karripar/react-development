@@ -7,7 +7,7 @@ const Logout = () => {
   const {handleLogout} = useUserContext();
   useEffect(() => {
     handleLogout();
-    localStorage.removeItem('token');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <>

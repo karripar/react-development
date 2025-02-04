@@ -6,7 +6,13 @@ const Layout = () => {
   // jos käyttäjää ei ole, kutsu handleAutoLogin
   const {handleAutoLogin, user} = useUserContext();
   useEffect(() => {
-    handleAutoLogin();
+    if (!user) {
+      try {
+        handleAutoLogin();
+      } catch (e) {
+        console.error((e as Error).message);
+      }
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (

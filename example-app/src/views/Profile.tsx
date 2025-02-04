@@ -1,26 +1,8 @@
-import { useEffect, useState } from "react";
-import { useUser } from "../hooks/apiHooks"
-import { UserWithNoPassword } from "hybrid-types/DBTypes";
+import { useUserContext } from "../hooks/ContextHooks";
 
 
 const Profile = () => {
-  const [user, setUser] = useState<UserWithNoPassword | null>(null);
-  const {getUserByToken} = useUser();
-
-  useEffect(() => {
-    const getUser = async () => {
-      const token = localStorage.getItem('token');
-      if (token) {
-      const userResponse = await getUserByToken(token as string);
-      setUser(userResponse.user);
-      } else {
-        console.error('No token found');
-      }
-    };
-    getUser();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+  const {user} = useUserContext();
 
   return (
     <>
