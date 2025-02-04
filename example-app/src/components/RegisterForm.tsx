@@ -61,7 +61,7 @@ const RegisterForm = () => {
             type="password"
             id="regPassword"
             onChange={handleInputChange}
-            autoComplete="current-password"
+            autoComplete="new-password"
           />
         </div>
         <button type="submit">Register</button>
