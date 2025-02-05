@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react-swc'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/~karripar/hooks/',
+  base: '/~karripar/upload/',
   test: {
     environment: 'jsdom',
     globals: true,
