@@ -5,6 +5,7 @@ import {useFile, useMedia} from '../hooks/apiHooks';
 const Upload = () => {
   const [uploading, setUploading] = useState(false);
   const [file, setFile] = useState<File | null>(null);
+  const [uploadResult, setUploadResult] = useState('');
   const {postFile} = useFile();
   const {postMedia} = useMedia();
   const initValues = {
@@ -32,14 +33,28 @@ const Upload = () => {
       const fileResult = await postFile(file, token);
       await postMedia(fileResult, inputs, token);
       // TODO: redirect to Home
+      //navigate('/');
+      setUploadResult('Upload successful');
+      setFile(null);
+      // clear form
+      setInputs(initValues);
+
+
     } catch (e) {
       console.log((e as Error).message);
+      setUploadResult((e as Error).message);
     } finally {
       setUploading(false);
     }
   };
 
-  const {handleSubmit, handleInputChange, inputs} = useForm(
+  const resetForm = () => {
+    setInputs(initValues);
+    setFile(null);
+    setUploadResult('');
+  }
+
+  const {handleSubmit, handleInputChange, inputs, setInputs} = useForm(
     doUpload,
     initValues,
   );
@@ -47,7 +62,6 @@ const Upload = () => {
   return (
     <>
       <h1>Upload</h1>
-      {uploading && <p>Uploading...</p>}
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="title">Title</label>
@@ -56,6 +70,7 @@ const Upload = () => {
             type="text"
             id="title"
             onChange={handleInputChange}
+            value={inputs.title}
           />
         </div>
         <div>
@@ -65,6 +80,7 @@ const Upload = () => {
             rows={5}
             id="description"
             onChange={handleInputChange}
+            value={inputs.description}
           ></textarea>
         </div>
         <div>
@@ -75,6 +91,8 @@ const Upload = () => {
             id="file"
             accept="image/*, video/*"
             onChange={handleFileChange}
+            value={ inputs.file ? inputs.file : ''}
+
           />
         </div>
         <img
@@ -94,8 +112,12 @@ const Upload = () => {
               : true
           }
         >
-          Upload
+          {uploading ? 'Uploading...' : 'Upload'}
         </button>
+        <button type="button" onClick={resetForm}>
+          Reset
+        </button>
+        <p>{uploadResult}</p>
       </form>
     </>
   );
