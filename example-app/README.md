@@ -1,5 +1,5 @@
 
-Open [This link here](https://users.metropolia.fi/~karripar/hooks/) to view it in the browser.
+Open [This link here](https://users.metropolia.fi/~karripar/upload/) to view it in the browser.
 
 
 # React + TypeScript + Vite
