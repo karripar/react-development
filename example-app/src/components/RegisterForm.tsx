@@ -1,5 +1,5 @@
 import { useUser } from "../hooks/apiHooks";
-import useForm from "../hooks/formHooks";
+import {useForm} from "../hooks/formHooks";
 import { RegisterCredentials } from "../types/localTypes";
 
 const RegisterForm = () => {
@@ -70,4 +70,4 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm
+export {RegisterForm};
