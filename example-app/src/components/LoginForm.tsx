@@ -2,8 +2,12 @@ import { useForm } from '../hooks/formHooks';
 import {Credentials} from '../types/localTypes';
 import { useUserContext } from '../hooks/ContextHooks';
 
+interface LoginFormProps {
+  toggleRegister: () => void;
+}
+
 // LoginForm.tsx
-const LoginForm = () => {
+const LoginForm: React.FC<LoginFormProps> = ({toggleRegister}) => {
 
   const initValues: Credentials = {
     username: '',
@@ -49,6 +53,9 @@ const LoginForm = () => {
           />
         </div>
         <button type="submit">Login</button>
+        <button type="button" onClick={toggleRegister}>
+          Create an account instead
+        </button>
       </form>
     </>
   );

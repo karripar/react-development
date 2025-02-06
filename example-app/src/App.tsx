@@ -20,28 +20,6 @@ type Device = {
   operatingSystem: string;
 };
 
-/**
-const useClock = () => {
-  const [clock, setClock] = useState('');
-
-  useEffect(() => {
-    const updateClock = () => {
-      const padZero = (num: number) => (num < 10 ? '0' + num : num);
-      const hours = padZero(new Date().getHours());
-      const minutes = padZero(new Date().getMinutes());
-      const seconds = padZero(new Date().getSeconds());
-      setClock(`${hours}:${minutes}:${seconds}`);
-    };
-
-    updateClock();
-    const intervalId = setInterval(updateClock, 1000);
-
-    return () => clearInterval(intervalId);
-  }, []);
-
-  return clock;
-};
-*/
 // query the device name from the user device
 const userAgent = navigator.userAgent;
 let osName = '';
