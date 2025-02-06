@@ -1,11 +1,15 @@
-import {ChangeEvent, useState} from 'react';
+import {ChangeEvent, useRef, useState} from 'react';
 import {useForm} from '../hooks/formHooks';
 import {useFile, useMedia} from '../hooks/apiHooks';
 
 const Upload = () => {
-  const [uploading, setUploading] = useState(false);
+  const [uploading, setUploading] = useState<boolean>(false);
   const [file, setFile] = useState<File | null>(null);
-  const [uploadResult, setUploadResult] = useState('');
+
+  // use ref to access the file input element for resetting the value
+  const fileRef = useRef<HTMLInputElement>(null);
+  const [uploadResult, setUploadResult] = useState<string>('');
+
   const {postFile} = useFile();
   const {postMedia} = useMedia();
   const initValues = {
@@ -38,8 +42,6 @@ const Upload = () => {
       setFile(null);
       // clear form
       setInputs(initValues);
-
-
     } catch (e) {
       console.log((e as Error).message);
       setUploadResult((e as Error).message);
@@ -51,8 +53,10 @@ const Upload = () => {
   const resetForm = () => {
     setInputs(initValues);
     setFile(null);
-    setUploadResult('');
-  }
+    if (fileRef.current) {
+      fileRef.current.value = '';
+    }
+  };
 
   const {handleSubmit, handleInputChange, inputs, setInputs} = useForm(
     doUpload,
@@ -91,8 +95,8 @@ const Upload = () => {
             id="file"
             accept="image/*, video/*"
             onChange={handleFileChange}
-            value={ inputs.file ? inputs.file : ''}
-
+            value={inputs.file}
+            ref={fileRef}
           />
         </div>
         <img
