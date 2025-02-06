@@ -2,7 +2,12 @@ import { useUser } from "../hooks/apiHooks";
 import {useForm} from "../hooks/formHooks";
 import { RegisterCredentials } from "../types/localTypes";
 
-const RegisterForm = () => {
+
+interface RegisterFormProps {
+  toggleRegister: () => void;
+};
+
+const RegisterForm: React.FC<RegisterFormProps> = ({toggleRegister}) => {
 
   const {postRegister} = useUser();
 
@@ -65,6 +70,9 @@ const RegisterForm = () => {
           />
         </div>
         <button type="submit">Register</button>
+        <button type="button" onClick={toggleRegister}>
+          Already have an account? Login
+        </button>
       </form>
     </>
   );
